@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "production-rag"
+name = "system-design-production-grade"
 version = "0.1.0"
 description = "Production-grade Retrieval-Augmented Generation service for system-design knowledge, powered by Google Gemini."
 readme = "README.md"

@@ -1,6 +1,6 @@
 # Architecture
 
-`production-rag` turns a RAG prototype into a deployable service. The emphasis is
+`system-design-production-grade` turns a RAG prototype into a deployable service. The emphasis is
 on the boundaries (config, embeddings, vector store, LLM, API) being swappable
 and testable, with guardrails and observability built in.
 

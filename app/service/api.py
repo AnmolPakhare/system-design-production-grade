@@ -22,7 +22,7 @@ log = get_logger("api")
 def create_app(settings: Settings | None = None, container: Container | None = None) -> FastAPI:
     settings = settings or get_settings()
     configure_logging(settings.log_level)
-    app = FastAPI(title="production-rag", version=__version__)
+    app = FastAPI(title="system-design-production-grade", version=__version__)
     container = container or build_container(settings)
     settings = container.settings
     app.state.container = container

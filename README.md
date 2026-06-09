@@ -1,4 +1,4 @@
-# production-rag
+# system-design-production-grade
 
 A **production-shaped** Retrieval-Augmented Generation service for system-design
 knowledge, powered by Google Gemini. It re-architects a working RAG prototype

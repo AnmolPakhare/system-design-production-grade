@@ -6,7 +6,7 @@ line for `. .venv/bin/activate`.
 ## 1. Setup (one-time)
 
 ```powershell
-cd production-rag
+cd system-design-production-grade
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -e ".[dev]"

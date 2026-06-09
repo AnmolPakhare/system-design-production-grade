@@ -22,4 +22,4 @@ eval:
 	ragctl eval
 
 docker:
-	docker build -t production-rag .
+	docker build -t system-design-production-grade .
