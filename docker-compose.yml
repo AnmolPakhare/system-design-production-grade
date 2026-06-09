@@ -1,0 +1,22 @@
+services:
+  rag:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      RAG_GEMINI_API_KEY: ${RAG_GEMINI_API_KEY:-}
+      RAG_GEMINI_MODEL: ${RAG_GEMINI_MODEL:-gemini-2.5-flash-lite}
+      RAG_EMBEDDING_PROVIDER: ${RAG_EMBEDDING_PROVIDER:-local}
+      RAG_CHROMA_DIR: /data/chroma
+      RAG_LOG_LEVEL: ${RAG_LOG_LEVEL:-INFO}
+    volumes:
+      # Persist the vector store across container restarts.
+      - rag-data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; urllib.request.urlopen('http://localhost:8000/health'); "]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  rag-data:
