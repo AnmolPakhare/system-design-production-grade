@@ -27,6 +27,13 @@ def _client(api_key=""):
     return TestClient(create_app(settings, container))
 
 
+def test_root_serves_chat_html():
+    r = _client().get("/")
+    assert r.status_code == 200
+    assert "text/html" in r.headers["content-type"]
+    assert "System Design RAG" in r.text
+
+
 def test_health():
     r = _client().get("/health")
     assert r.status_code == 200

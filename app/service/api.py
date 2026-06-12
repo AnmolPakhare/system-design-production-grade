@@ -8,13 +8,14 @@ import time
 import uuid
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 
 from .. import __version__
 from ..config import Settings, get_settings
 from ..logging_setup import configure_logging, get_logger
 from ..models import HealthResponse, QueryRequest, QueryResponse
 from .deps import Container, build_container
+from .index_page import INDEX_HTML
 
 log = get_logger("api")
 
@@ -56,6 +57,11 @@ def create_app(settings: Settings | None = None, container: Container | None = N
         return JSONResponse(
             status_code=500, content={"detail": "internal error", "request_id": rid}
         )
+
+    @app.get("/", response_class=HTMLResponse, include_in_schema=False)
+    def index() -> str:
+        """Minimal chat UI so answers render as text instead of raw JSON."""
+        return INDEX_HTML
 
     @app.get("/health", response_model=HealthResponse)
     def health() -> HealthResponse:
