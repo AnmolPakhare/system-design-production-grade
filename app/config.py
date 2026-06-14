@@ -15,7 +15,10 @@ ROOT = Path(__file__).resolve().parent.parent
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_prefix="RAG_",
-        env_file=".env",
+        # Absolute path so the .env is found no matter which directory the
+        # server/CLI is launched from (pydantic resolves a bare ".env" against
+        # the process CWD, which breaks `ragctl serve` started elsewhere).
+        env_file=str(ROOT / ".env"),
         env_file_encoding="utf-8",
         extra="ignore",
     )
